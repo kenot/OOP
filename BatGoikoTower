@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace BatGoikoTower
+{
+    class BatGoikoTower
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Please enter a positive number between 2 and 39: ");
+            
+            int height = int.Parse(Console.ReadLine());
+
+            int leftDots = height - 1;
+            int rightDots = height - 1;
+            int width = height * 2;
+            int lines = 1;
+            int linesPrinted;
+            int k = 3;
+            int lineIncrement = 3;
+            int inner = width - ((leftDots * 2) + 2);
+            for (int i = 1; i <= height; i++)
+            {
+                Console.Write(new string('.', leftDots));
+                Console.Write(new string('/', 1));
+                linesPrinted = 2;
+                if (i == 2)
+                {
+                    linesPrinted = 2 * 1;
+                    Console.Write(new string('-', linesPrinted));
+                    lines = 2;
+                }
+                else if (i == 4)
+                {
+                    linesPrinted = 2 * k;
+                    k *= 2;
+                    Console.Write(new string('-', linesPrinted));
+                    lines = 4;
+                    lines = lines + lineIncrement;
+                }
+                else if (i > 4 && i == (lines))
+                {
+                    inner = width - ((leftDots * 2) + 2);
+                    if (i == (lines))
+                    {
+                        linesPrinted = 2 * k;
+                        k *= 2;
+                    }
+                    lineIncrement++;
+                    lines = lines + lineIncrement;
+                    Console.Write(new string('-', inner));
+                }
+                else
+                {
+                    inner = width - ((leftDots * 2) + 2);
+                    Console.Write(new string('.', inner));
+                }
+                Console.Write(new string('\\', 1));
+                Console.Write(new string('.', leftDots));
+                leftDots--;
+                Console.WriteLine();
+            }
+        }
+    }
+}
